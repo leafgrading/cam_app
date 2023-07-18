@@ -40,21 +40,23 @@ def main():
         st.session_state.cap_count = 0
     # if st.session_state.cap_count == 5:
     #     st.session_state.cam_state = True
-    picture = st.camera_input(label="Camera", disabled=st.session_state.cam_state)
-    if picture:
-        st.session_state.cap_count += 1
-
-        if "images" not in st.session_state:
-            capture_images.append(picture)
-            st.session_state.images = capture_images
-        else:
-            capture_images = st.session_state.images
-            capture_images.append(picture)
-            st.session_state.images = capture_images
-        # st.write(len(st.session_state.images))
-        if len(st.session_state.images) == 5:
-            st.session_state.cam_state = True
-            show_five_images(st.session_state.images,None)
+    picture1 = st.camera_input(label="Camera1", key="1st Image")
+    if picture1:
+        capture_images.append(picture1)
+    picture2 = st.camera_input(label="Camera2", key="2nd Image")
+    if picture2:
+        capture_images.append(picture2)
+    picture3 = st.camera_input(label="Camera3", key="3rd Image")
+    if picture3:
+        capture_images.append(picture3)
+    picture4 = st.camera_input(label="Camera4", key="4th Image")
+    if picture4:
+        capture_images.append(picture4)
+    picture5 = st.camera_input(label="Camera5", key="5th Image")
+    if picture5:
+        capture_images.append(picture5)
+    if len(capture_images) > 0:
+        show_five_images(capture_images)
 
 if __name__ == "__main__":
     main()

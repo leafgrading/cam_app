@@ -1,7 +1,7 @@
 import streamlit as st
 from PIL import Image
 import math
-from streamlit_back_camera_input import back_camera_input
+#from streamlit_back_camera_input import back_camera_input
 
 def show_image_with_text(image, text=None):
     st.image(image, use_column_width=True)

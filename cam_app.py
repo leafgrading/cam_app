@@ -1,6 +1,7 @@
 import streamlit as st
 from PIL import Image
 import math
+from streamlit_back_camera_input import back_camera_input
 
 def show_image_with_text(image, text=None):
     st.image(image, use_column_width=True)
@@ -31,6 +32,11 @@ def show_five_images(uploaded_images, text=None):
             else:
                 show_image_with_text(image, text[i])
 
+def change_state():
+    st.session_state.cap_count += 1
+    if st.session_state.cap_count == 10:
+        st.session_state.cam_state = True
+
 def main():
     st.title("Camera input demo")
     # st.write(st.session_state)
@@ -38,25 +44,52 @@ def main():
     if "cam_state" not in st.session_state:
         st.session_state.cam_state = False
         st.session_state.cap_count = 0
-    # if st.session_state.cap_count == 5:
-    #     st.session_state.cam_state = True
-    picture1 = st.camera_input(label="Camera1", key="1st Image")
-    if picture1:
-        capture_images.append(picture1)
-    picture2 = st.camera_input(label="Camera2", key="2nd Image")
-    if picture2:
-        capture_images.append(picture2)
-    picture3 = st.camera_input(label="Camera3", key="3rd Image")
-    if picture3:
-        capture_images.append(picture3)
-    picture4 = st.camera_input(label="Camera4", key="4th Image")
-    if picture4:
-        capture_images.append(picture4)
-    picture5 = st.camera_input(label="Camera5", key="5th Image")
-    if picture5:
-        capture_images.append(picture5)
-    if len(capture_images) > 0:
-        show_five_images(capture_images)
+    # picture = None
+    # if st.session_state.cam_state != True:
+    picture = st.camera_input(label="Camera", on_change= change_state(), disabled=st.session_state.cam_state, key="photo1")
+    if picture or st.session_state.cam_state == True:
+        # st.session_state.cap_count += 1
+
+        if "images" not in st.session_state:
+            capture_images.append(picture)
+            st.session_state.images = capture_images
+        else:
+            capture_images = st.session_state.images
+            if picture is not None:
+                capture_images.append(picture)
+                st.session_state.images = capture_images
+        # st.write(len(st.session_state.images))
+        if len(st.session_state.images) >= 5:
+            st.session_state.cam_state = True
+            show_five_images(st.session_state.images,None)
 
 if __name__ == "__main__":
     main()
+
+
+# import streamlit as st
+
+# def take_camera_input():
+#   """Takes a picture from the user's webcam and returns it as an image."""
+#   image = st.camera_input("Take a picture")
+#   return image
+
+# def disable_camera():
+#   """Disables the user's webcam."""
+#   st.camera_input("", disabled=True)
+
+# if __name__ == "__main__":
+#   # Take a picture from the user's webcam.
+#   image = take_camera_input()
+
+#   # Display the image on the Streamlit page.
+#   st.image(image)
+
+#   # If the user clicks on the "Take a picture" button, disable the webcam.
+#   if st.button("Disable Camera"):
+#     disable_camera()
+
+#   # Disable the webcam on change method.
+#   st.camera_input("", on_change=disable_camera)
+
+

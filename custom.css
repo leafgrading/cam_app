@@ -42,3 +42,11 @@ footer
         margin: 10px;
     }
 }
+@media (max-width: 600px) {
+    .css-ocqkz7 {
+        flex-wrap: nowrap; /* Display images in a single row */
+        gap: 5px; /* Reduce the gap between images */
+        justify-content: flex-start; /* Align images to the left */
+        overflow-x: auto; /* Prevent horizontal scrolling on mobile devices */
+    }
+}

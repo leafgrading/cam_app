@@ -83,8 +83,6 @@ def main():
         st.session_state.cam_state = False
         st.session_state.cap_count = 0
     picture = None
-    # if st.session_state.cam_state != True:
-    # Toggle button for the camera
     st.subheader("Choose an option:")
     option = st.radio("", ("Upload Image File", "Capture Image"))
     if option == "Upload Image File":
@@ -98,7 +96,9 @@ def main():
                 st.session_state.cam_state = True
     elif option == "Capture Image":
         picture = st.camera_input(label="Camera Input", on_change= change_state(), disabled=st.session_state.cam_state, key="photo1")
-    if picture or st.session_state.cam_state == True:
+    # st.write(st.session_state)
+    # st.write(len(capture_images))
+    if picture or st.session_state.cam_state == True or st.session_state.cap_count > 1:
         # st.session_state.cap_count += 1
         if len(capture_images)>0:
             st.session_state.images = capture_images

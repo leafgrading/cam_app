@@ -1,25 +1,59 @@
-span.css-10trblm.eqr7zpz0
-{
-    /* background-color: cadetblue; */
-    text-align: center;
+header[data-testid="stHeader"] {
+  background-color: #e5e6ea;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  display: none;
 }
-div.row-widget.stButton
-{
-    text-align: center;
+div[data-testid="stAppViewContainer"] {
+  background: #103172;
 }
-div.css-1dj3z61.e1iq63gx0
-{
-    text-align: center;
+div[data-testid="block-container"] {
+  background: #06132D;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
-/* button.css-nqowgj.e1ewe7hr3
-{
-    visibility: hidden;
-    display: none;
+footer {
+  visibility: hidden;
+  display: none;
+}
+h3 {
+  color: #e5e6ea;
+}
+.css-1y4p8pa {
+  padding-top: 0px !important;
+}
+div[data-testid="stVerticalBlock"]{
+    overflow:hidden;
+}
+section[data-testid="stFileUploadDropzone"] {
+  background-color: #103172;
+}
+.css-19rxjzo.e1ewe7hr10 {
+  background-color: #289614;
+  color: white;
+}
+.css-1gulkj5 {
+  color: white;
+}
+.css-1aehpvj {
+  color: grey;
+}
+.st-ci,
+.css-fg4pbf {
+  color: white;
+}
+.stButton {
+  display: flex;
+  justify-content: center;
+}
+/* .css-1gulkj5 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.css-u8hs99 {
+  margin-right: 0px;
+  display: block;
 } */
-footer
-{
-    display: none;
-}
 /* img{
     width: 100px;
     height: 120px;
@@ -29,24 +63,37 @@ footer
 .css-ocqkz7 {
     display: inline-flex !important;
 } */
-.header {
+/* .header {
     background-color: white;
-}
-@media (max-width: 600px) {
+} */
+/* @media (max-width: 600px) {
     .image-row {
         display: flex;
         flex-direction: row;
         justify-content: center;
     }
     .image-row img {
-        margin: 10px;
+        width: 30px;
+        height: 30px;
     }
-}
+} */
 @media (max-width: 600px) {
-    .css-ocqkz7 {
-        flex-wrap: nowrap; /* Display images in a single row */
-        gap: 5px; /* Reduce the gap between images */
-        justify-content: flex-start; /* Align images to the left */
-        overflow-x: auto; /* Prevent horizontal scrolling on mobile devices */
-    }
+  .element {
+    all: none !important;
+  }
+  .css-ocqkz7 {
+    display: flex;
+    /* flex-wrap: nowrap; Display images in a single row */
+    gap: 5px; /* Reduce the gap between images */
+    justify-content: flex-start; /* Align images to the left */
+    overflow-x: auto; /* Prevent horizontal scrolling on mobile devices */
+  }
+  img {
+    width: 150px !important;
+  }
+  .css-1txx34t .css-13zbvqx .css-19k5nj9 .e1f1d6gn0 .css-6awftf .e1vs0wn31 {
+    width: 128px !important;
+    display: flex !important;
+    flex-direction: row !important;
+  }
 }

@@ -32,7 +32,7 @@ def show_five_images(uploaded_images, text=None):
         if i % num_columns == 0:
             col = st.columns(num_columns)
 
-        # image = image.resize((256, 320))
+        image = image.resize((256, 320))
         with col[i % num_columns]:
             if text is None:
                 show_image_with_text(image, None)
@@ -79,12 +79,29 @@ def image_to_base64(image):
 @st.cache_resource()
 def header_view(_image):
     st.markdown(f"""
-    <nav class="navbar navbar-primary d-flex justify-content-center" style="background-color: #103172">
+    <nav class="navbar fixed-top navbar-primary d-flex justify-content-center" style="background-color: #103172">
       <div class="">
         <img src="data:image/png;base64,{image_to_base64(_image)}" alt="" width="150" height="50" />
       </div>
     </nav>
     """,unsafe_allow_html=True)
+#;margin-top:-34px;margin-left:-15px;margin-right:-15px;    
+
+def grading_view(grade, price_range):
+    st.markdown(f'''
+    <div class="card" style="width: 100%; background-color: #58381D; border-radius: 10px">
+      <div class="card-body d-flex justify-content-center align-items-center py-5">
+        <div class="w-50 text-center" style="border-right: 2px solid #6E4819">
+          <h5 class="card-title" style="color: #FFBB00;">Final Grade</h5>
+          <p class="card-text" style="color: #FFBB00;">{grade}</p>
+        </div>
+        <div class="w-50 text-center">
+          <h5 class="card-title" style="color: #FFBB00;">Price Range</h5>
+          <p class="card-text" style="color: #FFBB00;">{price_range}</p>
+        </div>
+      </div>
+    </div>
+    ''', unsafe_allow_html=True)
 
 def main():
     st.markdown(f'''<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">''',unsafe_allow_html=True)
@@ -102,8 +119,8 @@ def main():
         st.session_state.cam_state = False
         st.session_state.cap_count = 0
     picture = None
-    st.subheader("Choose an option:")
-    option = st.radio("", ("Upload Image File", "Capture Image"))
+    st.subheader("")
+    option = st.radio("Choose an option:", ("Upload Image File", "Capture Image"))
     if option == "Upload Image File":
         uploaded_file = st.file_uploader("Upload Images", type=["png", "jpg", "jpeg"], accept_multiple_files=True)
         if uploaded_file is not None:
@@ -118,7 +135,7 @@ def main():
     # st.write(st.session_state)
     # st.write(len(capture_images))
     if picture or st.session_state.cam_state == True or st.session_state.cap_count > 1:
-        # st.session_state.cap_count += 1
+        # st.write(st.session_state)
         if len(capture_images)>0:
             st.session_state.images = capture_images
         else:
@@ -168,9 +185,10 @@ def main():
                     show_five_images(st.session_state.images[:3], predicted_result[:3])
                     st.markdown("___")
                     st.subheader("Overall Grade")
-                    st.info("MDA")
-                    st.subheader("Predicted Price")
-                    st.info("195")
+                    # st.info("MDA")
+                    # st.subheader("Predicted Price")
+                    # st.info("195")
+                    grading_view("CLC","112-120")
 
 if __name__ == "__main__":
     main()
